@@ -315,7 +315,11 @@ PHP_METHOD(Beanspeak_Beanspeak, pauseTube) {
 		ZEPHIR_INIT_VAR(tube);
 		ZVAL_EMPTY_STRING(tube);
 	}
-	delay = zephir_get_intval(delay_param);
+	if (unlikely(Z_TYPE_P(delay_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'delay' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	delay = Z_LVAL_P(delay_param);
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("dispatcher"), PH_NOISY_CC);

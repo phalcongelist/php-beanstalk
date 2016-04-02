@@ -178,7 +178,7 @@ class Beanspeak implements DispatcherAwareInterface
      * $queue->pauseTube('process-video', 60 * 60);
      * </code>
      */
-    public function pauseTube(string! tube, int delay) -> int
+    public function pauseTube(string! tube, int! delay) -> int
     {
         var response;
 
